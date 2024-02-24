@@ -14,9 +14,24 @@ summer_months = [d for d in weatherdata if any([month in d['date'] for month in 
 print(f"Data for {len(summer_months)} summer days")
 
 # TODO: calculate the mean for both min and max temperatures
-
+max_temps = [d['tmax'] for d in summer_months]
+min_temps = [d['tmin'] for d in summer_months]
+print(max_mean := statistics.mean(max_temps))
+print(min_mean := statistics.mean(min_temps))
 
 # TODO: calculate the median values for min and max temperatures
+print(statistics.median(max_temps))
+print(statistics.median(min_temps))
 
 
 # TODO: use the standard deviation function to find outlier temperatures
+upper_outlier = max_mean + (statistics.stdev(max_temps) *2)
+lower_outlier = min_mean - (statistics.stdev(min_temps) *2)
+print(upper_outlier)
+print(lower_outlier)
+
+max_outliers = [t for t in max_temps if t >= upper_outlier]
+min_outliers = [t for t in min_temps if t <= lower_outlier]
+
+print(len(min_outliers))
+print(len(max_outliers))
